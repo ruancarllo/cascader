@@ -19,7 +19,12 @@ class Cascader {
         continue;
       }
 
-      if (analyzingCharacter == ':' && oldCharacters[characterIndex + 1] != ':' && oldCharacters[characterIndex - 1] != ':') {
+      if (
+        characterIndex + 1 >= 0 && characterIndex + 1 < oldCharacters.length &&
+        characterIndex - 1 >= 0 && characterIndex - 1 < oldCharacters.length &&
+
+        analyzingCharacter == ':' && oldCharacters[characterIndex + 1] != ':' && oldCharacters[characterIndex - 1] != ':'
+      ) {
         while (analyzingCharacter != ';' && analyzingCharacter != '}' && analyzingCharacter != ')') {
           newCharacters.add(analyzingCharacter);
           characterIndex++;
@@ -38,7 +43,12 @@ class Cascader {
         continue;
       }
 
-      if (analyzingCharacter == ':' && oldCharacters[characterIndex + 1] != ':' && oldCharacters[characterIndex - 1] != ':') {
+      if (
+        characterIndex + 1 >= 0 && characterIndex + 1 < oldCharacters.length &&
+        characterIndex - 1 >= 0 && characterIndex - 1 < oldCharacters.length &&
+
+        analyzingCharacter == ':' && oldCharacters[characterIndex + 1] != ':' && oldCharacters[characterIndex - 1] != ':'
+      ) {
         newCharacters.add(analyzingCharacter);
         newCharacters.add(' ');
         continue;
@@ -125,7 +135,10 @@ class Cascader {
     for (int lineIndex = 0; lineIndex < styleSheetLines.length; lineIndex++) {
       String analyzingLine = styleSheetLines[lineIndex];
 
-      if (analyzingLine.endsWith('{') && !styleSheetLines[lineIndex - 1].endsWith('{')) {
+      if (
+        lineIndex - 1 >= 0 && lineIndex - 1 < styleSheetLines.length &&
+        analyzingLine.endsWith('{') && !styleSheetLines[lineIndex - 1].endsWith('{')
+      ) {
         styleSheetLines[lineIndex] = '\n${analyzingLine}';
       }
     }
